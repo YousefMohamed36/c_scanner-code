@@ -103,8 +103,10 @@ def c_scanner(code):
 
 if __name__ == "__main__":
     # Example C code
+    # get file path as an input 
     file_path = input("please input the file path:")
-    
+
+    # read the file and converting it to a string
     with open(file_path,'r') as file :
         c_code = file.read()
     
