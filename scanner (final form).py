@@ -20,6 +20,7 @@ def c_scanner(code):
                 string_of_comment += code[i]
                 i += 1
             tokens.append(("SINGLE_LINE_COMMENT",string_of_comment))
+            continue
 
         # Check for multi-line comments
         if code.startswith('/*', i):
@@ -30,7 +31,7 @@ def c_scanner(code):
                 i += 1
             tokens.append(("MULTI-LINE COMMENT",string_of_multiline))    
             i += 2  # Skip the closing '*/'
-            
+            continue
 
         # Check for data types
         data_types = ['int', 'float', 'char', 'double', 'void']
