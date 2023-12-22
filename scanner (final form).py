@@ -75,12 +75,20 @@ def c_scanner(code):
                                 break
                         else:
                             # Check for parentheses
-                            special_characters = ['(', ')','{', '}','[', ']',';']
+                            special_characters = ['(', ')','{', '}','[', ']']
                             for special in special_characters:
                                 if code.startswith(special, i):
                                     tokens.append(('SPECIAL_CHAR', special))
                                     i += len(special)
                                     break
+                            else:
+                                # check for single_char_operator
+                                single_char_operator = [';',',']
+                                for op in single_char_operator:
+                                    if code.startswith(op,i):
+                                        tokens.append(("S_CHAR_OPERATOR" , op))
+                                        i += len(op)
+                                        break
                                 
                                 else:
                                         # Check for strings
@@ -114,9 +122,9 @@ if __name__ == "__main__":
 
     # Get tokens from the C code
     tokens = c_scanner(c_code)
-    
-    print("----------------------------")
-    print("token type" +" : "+"token value")
+    print("\n---------------------------------------")
+    print("'token type' followed by 'Token value' :")
+    print("---------------------------------------")
 
     # Display the tokens
     for token_type, value in tokens:
